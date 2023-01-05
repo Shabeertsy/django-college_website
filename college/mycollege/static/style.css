@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -9,14 +9,16 @@
 
 
 /* default */
-.font-family{
+.font-family {
     font-family: 'poppins', sans-serif;
 }
-.br{
-   
+
+.br {
+
     border-radius: 15px;
 }
-.br-n{
+
+.br-n {
     border: none;
 }
 
@@ -24,55 +26,131 @@
 
 /* styling for admin */
 
-.admin-main{
+.admin-main {
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(145deg,rgb(22, 22, 55),rgb(22, 22, 70));
+    background-image: linear-gradient(145deg, rgb(22, 22, 55), rgb(22, 22, 70));
     font-family: 'poppins', sans-serif;
 }
 
-.st-main{
+
+/* styling for student */
+.st-main {
     min-height: 1000px;
     width: 100%;
-    background-image: linear-gradient(50deg,rgb(188, 203, 201),rgb(235, 217, 180));
+    background-image: linear-gradient(50deg, rgb(156, 185, 189), rgb(235, 217, 180));
 }
-.st-name{
+
+.st-name {
     height: 80%;
     height: 140px;
     background-color: rgb(49, 217, 161);
     border-radius: 17px;
 }
-.st-container{
-    background-image:linear-gradient(50deg,rgb(175, 223, 243),rgb(226, 223, 216));
+
+.st-container {
+    background-image: linear-gradient(50deg, rgb(162, 198, 214), rgb(224, 216, 197));
 }
-.st-left{
+
+.st-left {
     background-color: #fff;
 }
-.st-data{
-   height: 240px;
+
+.st-data {
+    height: 240px;
     background-color: rgb(255, 255, 255);
     border-radius: 17px;
 }
 
 
-
-.hod-main{
+/* styling for hod */
+.hod-main {
 
     width: 100%;
-    height: 100vh;
-    background-image: linear-gradient(145deg,rgb(22, 22, 55),rgb(22, 22, 70));
+    min-height: 100vh;
+    background-image: linear-gradient(145deg, rgb(22, 22, 55), rgb(22, 22, 70));
 }
 
-.hod-left{
+.hod-left {
     min-height: 540px;
-    
+
 }
-.teacher-main{
+
+/* styling for teacher */
+.teacher-main {
 
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(215deg,rgb(223, 191, 191),rgb(73, 58, 58));
+    background-image: linear-gradient(215deg, rgb(223, 191, 191), rgb(73, 58, 58));
 }
-.teacher-container{
-    background-image: linear-gradient(215deg,rgb(223, 191, 191),rgb(73, 58, 58));
+
+.teacher-container {
+    background-image: linear-gradient(215deg, rgb(223, 191, 191), rgb(73, 58, 58));
+}
+
+/* styling for form */
+.reg-container-main {
+    background-image: linear-gradient(145deg, rgb(22, 22, 55), rgb(22, 22, 70));
+    min-height: 100vh;
+}
+
+
+.view-hod-main {
+    background-image: linear-gradient(145deg, rgb(37, 37, 108), rgb(22, 22, 70));
+    min-height: 100vh;
+}
+
+.view-container {
+
+    min-height: 700px;
+}
+
+
+
+.overflow {
+    border-right: 5px solid;
+    border-color: orangered;
+    border-radius: 8px;
+    display: flex;
+    overflow: scroll;
+}
+
+.overflow::-webkit-scrollbar {
+    display: none;
+}
+
+.card-view {
+    background-image: linear-gradient(145deg, rgb(47, 47, 77), rgb(50, 6, 75));
+    border: 1px solid;
+    border-color: #fff;
+    color: #fff;
+
+    min-height: 300px;
+}
+
+.teacher-view-main {
+    color: #fff;
+    background-image: linear-gradient(145deg, rgb(22, 22, 55), rgb(22, 22, 70));
+    min-height: 100vh;
+
+}
+
+.card-teacher {
+    border: 1px solid;
+    border-color: black;
+}
+
+.card:hover {
+    box-shadow: rgba(255, 172, 28, 0.199) -10px 10px, rgba(255, 172, 28, 0.19) -20px 20px;
+}
+
+.view-all-main {
+    min-height: 90vh;
+    background: linear-gradient(14deg, rgb(232, 220, 220) 0%, rgb(243, 235, 235) 50%, rgb(22, 55, 51)50%, rgb(22, 62, 70)100%);
+
+}
+
+.view-all-main-bottom {
+    min-height: 300px;
+    background:linear-gradient(10deg, rgb(233, 219, 219) 0%,rgb(228, 212, 212) 50%);
 }

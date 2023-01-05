@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hods</title>
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+</head>
+
+<body>
+
+    <div class="view-hod-main font-family">
+        <!-- navbar -->
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark conatiner-fluid">
+                <a class="navbar-brand" href="#">College</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="{% url 'adminp' %}">Back</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- scrollable cards -->
+        <div class="view">
+            <div class="container view-container mt-5">
+                <h2 class="text-center pb-2 text-light pt-3 ">HOD</h2>
+                <p class="p-4 shadow-lg bg-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus totam placeat unde illo, vitae magni neque recusandae similique qui hic eius? Inventore placeat dolorem sed eaque hic unde, officia odit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore tempora commodi laborum cupiditate perspiciatis. Eligendi libero, consequatur delectus unde excepturi veritatis id aperiam neque quod laudantium quis quas, velit vel</p>
+                <div class="row" style="height: 150px;">
+
+                </div>
+                <div class="overflow m-4 shadow-lg">
+                    {% for i in data %}
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card card-view" style="width: 20rem;">
+                            <div class="card-header bg-light text-dark">
+                              <label>{{forloop.counter}}</label> <h5> {{i.first_name}}</h5>
+                            </div>
+                            <ul class="">
+                                <li class="list-group-item border-bottom mt-2">{{i.second_name}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.user_name}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.address}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.email}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.phone}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.department}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.qualification}}</li>
+                                <li class="list-group-item border-bottom mt-2">{{i.experience}}</li>
+                                <li class="list-group-item  mt-4"><a href="{% url 'delhod' i.id %}" class="btn btn-danger">Delete</a></li>                           
+                            </ul>
+                        </div>
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

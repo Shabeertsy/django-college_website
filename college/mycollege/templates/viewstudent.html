@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>viewstudent</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="{% static '/style.css' %}">
+
+</head>
+
+<body>
+
+    <div class="student-view-main bg-dark font-family" style="min-height: 100vh; color: #fff;">
+
+        <!-- navbar -->
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark conatiner-fluid">
+                <a class="navbar-brand" href="#">College</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span
+                                class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link" href="{% url 'teacher' %}">Back</a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+
+        <!-- table area -->
+        <div class="container">
+            <div class="row" style="height: 170px;"></div>
+            <h3 class="text-center mb-5">Student List</h3>
+            <div class="row">
+                <table class="table">
+                    <thead class="thead-dark text-light">
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">First Name</th>
+                            <th scope="col">Last Name</th>
+                            <th scope="col">User Name</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">Activity</th>
+                        </tr>
+                    </thead>
+                    {% for i in data %}
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="text-light">{{forloop.counter}}</th>
+                            <td class="text-light">{{i.first_name}}</td>
+                            <td class="text-light">{{i.second_name}}</td>
+                            <td class="text-light">{{i.user_name}}</td>
+                            <td class="text-light">{{i.address}}</td>
+                            <td class="text-light">{{i.email}}</td>
+                            <td class="text-light">{{i.phone}}</td>
+                            <td class="text-light">{{i.department}}</td>
+                            <td class="text-light">{{i.year}}</td>
+                            <td class="text-light"><a href="{% url 'delstudent' i.id %}" class="btn btn-danger">Delete</a></td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                </table>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+</body>
+
+</html>

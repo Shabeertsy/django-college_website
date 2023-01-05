@@ -16,6 +16,7 @@
 
 </head>
 
+
 <body>
     <div class="hod-main font-family">
 
@@ -29,20 +30,23 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Features</a>
+                        <a class="nav-link" href="#">Profile</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="#">Pricing</a>
+                        <a class="nav-link" href="{% url 'adteacher' %}">Add Teachers</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="#">Log Out</a>
                     </li>
                 </ul>
             </div>
         </nav>
 
         <!-- top section with image -->
-        <div class="container mt-5 shadow border br border-danger bg-light">
+        <div class="container mt-5 shadow pb-3 bg-light">
             <div class="row">
                 <div class="col-md-6 hod-left">
                     <div class="container">
@@ -65,31 +69,55 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- bottom section with cards -->
-            <div class="row m-3">
-                <div class="col-lg-6 mt-2">
-                    <div class="card shadow" style="width: 100%; height: 200px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+        <!-- bottom section with cards -->
+        <div class="container mt-3 bg-light">
+            <div class="row">
+                <div class="row m-3">
+                    <div class="col-lg-3 mt-2">
+                        <div class="card shadow" style="width: 100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">View Teachers</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.</p>
+                                <a href="{% url 'viewteacher' %}" class="btn btn-success">View</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mt-2">
+                        <div class="card shadow" style="width: 100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Leave </h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.</p>
+                                <a href="#" class="btn btn-primary">Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mt-2">
+                        <div class="card shadow" style="width: 100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Teachers</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.</p>
+                                <a href="" class="btn btn-primary">View Students</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 mt-2">
+                        <div class="card shadow" style="width: 100%; height: 200px;">
+                            <div class="card-body">
+                                <h5 class="card-title">Exam details</h5>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional
+                                    content.</p>
+                                <a href="#" class="btn btn-primary">Add Exam Details</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 mt-2">
-                    <div class="card shadow" style="width: 100%; height: 200px;">
-                        <div class="card-body">
-                            <h5 class="card-title">Special title treatment</h5>
-                            <p class="card-text">With supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
-                        </div>
-                    </div>
-                </div>
+
             </div>
-
         </div>
     </div>
 </body>

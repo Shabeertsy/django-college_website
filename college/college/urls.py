@@ -20,10 +20,27 @@ from mycollege import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('',views.index,name='index'),
-    path('registration',views.registration,name='registration'),
+    path('adhod',views.ad_hod,name='adhod'),
     path('login',views.login,name='login'),
     path('adminp',views.adminp,name='adminp'),
     path('student',views.student,name='student'),
     path('hod',views.hod,name='hod'),
     path('teacher',views.teacher,name='teacher'),
+    path('adteacher',views.ad_teacher,name='adteacher'),
+    path('adstudent',views.add_student,name='adstudent'),
+    path('hoddata',views.add_hod_data,name='hoddata'),
+    path('teacherdata',views.add_teacher_data,name='teacherdata'),
+    path('studentdata',views.add_student_data,name='studentdata'),
+    path('viewhod',views.view_hod,name='viewhod'),
+    path('delhod/<int:hod_id>',views.delete_hod,name='delhod'),
+    path('viewteacher',views.view_teacher,name='viewteacher'),
+    path('delteacher/<int:t_id>',views.del_teacher,name='delteacher'),
+    path('viewstudent',views.view_student,name='viewstudent'),
+    path('delstudent/<int:st_id>',views.del_student,name='delstudent'),
+    path('viewall',views.viewall,name='viewall'),
+    path('adminstudentview',views.view_st_admin,name='adminstudentview'),
+    path('deladminstudent/<int:st_id>',views.del_student_admin,name='deladminstudent'),
+    path('deladminteacher/<int:teacher_id>',views.del_teacher_admin,name='deladminteacher'),
+    path('approveteacher/<int:teacher_id>',views.approve_teacher,name='approvetreacher')
+
 ]
