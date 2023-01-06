@@ -36,21 +36,9 @@
                             <a class="nav-link" href="#">Home <span class="sr-only"></span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                            <a class="nav-link" href="{% url 'loginpage' %}">Login</a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dashboards
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{% url 'adminp' %}">Admin Dashboard</a>
-                                <a class="dropdown-item" href="{% url 'hod' %}">Hod Dashboard</a>
-                                <a class="dropdown-item" href="{% url 'teacher' %}">Teacher Dashboard</a>
-                                <a class="dropdown-item" href="{% url 'student' %}">Student Dashboard</a>
-
-                            </div>
-                        </li>
+                     
                     </ul>
                 </div>
             </nav>

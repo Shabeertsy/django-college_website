@@ -21,7 +21,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('',views.index,name='index'),
     path('adhod',views.ad_hod,name='adhod'),
-    path('login',views.login,name='login'),
+    path('loginpage',views.login_page,name='loginpage'),
     path('adminp',views.adminp,name='adminp'),
     path('student',views.student,name='student'),
     path('hod',views.hod,name='hod'),
@@ -42,6 +42,8 @@ urlpatterns = [
     path('deladminstudent/<int:st_id>',views.del_student_admin,name='deladminstudent'),
     path('deladminteacher/<int:teacher_id>',views.del_teacher_admin,name='deladminteacher'),
     path('approveteacher/<int:teacher_id>',views.approve_teacher,name='approveteacher'),
-    path('approvestudent/<int:student_id>',views.approve_student,name='approvestudent')
+    path('approvestudent/<int:student_id>',views.approve_student,name='approvestudent'),
+    path('login',views.login,name='login'),
+    path('profile',views.profile,name='profile'),
 
 ]

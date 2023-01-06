@@ -19,7 +19,7 @@ def ad_hod(request):
     return render(request, 'adhod.html')
 
 
-def login(request):
+def login_page(request):
     return render(request, 'login.html')
 
 
@@ -138,7 +138,7 @@ def add_teacher_data(request):
                                second_name=second_name, user_name=user_name,
                                address=address, phone=phone, password=password,
                                password1=password1,
-                               department=department, subject=subject)
+                               department=department, subject=subject,role=role)
 
                 data.save()
         else:
@@ -185,7 +185,7 @@ def add_student_data(request):
                 data = Student(user=user,status=status, first_name=first_name, second_name=second_name,
                                user_name=user_name, address=address,
                                email=email, phone=phone,
-                               department=department, year=year, password=password, password1=password1)
+                               department=department, year=year,role=role, password=password, password1=password1)
 
                 data.save()
 
@@ -272,6 +272,7 @@ def del_teacher_admin(request,teacher_id):
     return redirect("viewall")
 
 
+
 #approve teacher
 
 def  approve_teacher(request,teacher_id):
@@ -291,6 +292,10 @@ def approve_student(request,student_id):
     return redirect("adminstudentview")
 
 
+#profile
+
+def profile(request):
+    return render(request,'profile.html')
 
 
 
@@ -300,8 +305,8 @@ stat=''
 rol=''
 
 def login(request):
-    global status
-    global role
+    global stat
+    global rol
 
     if request.method=='POST':
         username=request.POST.get('username')
@@ -313,29 +318,45 @@ def login(request):
         
         for i in data:
             user_name=i['username']
+            print('username',user_name)
 
-            i=i['id']
+            id=i['id']
+            print('id',id)
 
 
-            ds=Student.objects.filter(user_id=id).values()
+            student_data=Student.objects.filter(user_id=id).values()
 
-            for i in ds:
+            print('st-data',student_data)
+
+            for i in student_data:
                 stat=i['status']
                 rol=i['role']
 
+                print('role',rol)
+                print('status',stat)
 
-            dt=Teacher.objects.filter(user_id=id).values()
+
+            teacher_data=Teacher.objects.filter(user_id=id).values()
             
-            for i in dt:
+            for i in teacher_data:
+                stat=i['status']
+                rol=i['role']
+
+                print('role',rol)
+                print('status',stat)
+
+
+
+            hod_data=Hod.objects.filter(user_id=id).values()
+
+            for i in hod_data:
                 stat=i['status']
                 rol=i['role']
 
 
-            dh=Hod.objects.filter(user_id=id).values()
+                print('role',rol)
+                print('status',stat)
 
-            for i in dh:
-                stat=i['status']
-                rol=i['role']
 
 
             if user is not None and rol=='student' and username==user_name and stat=='1':
@@ -351,6 +372,7 @@ def login(request):
                 return redirect('hod')
             
             elif username=='admin' and password =='admin123':
+                print('user =',user)
                 auth_login(request,user)
                 return redirect('adminp')
 
@@ -361,7 +383,7 @@ def login(request):
             return redirect('login')
 
     else:
-        return render(request,'login.html')    
+        return render(request,'login.html')
 
         
 

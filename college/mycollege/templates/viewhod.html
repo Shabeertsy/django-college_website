@@ -30,7 +30,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span
+                                class="sr-only">(current)</span></a>
                         <a class="nav-item nav-link" href="{% url 'adminp' %}">Back</a>
                     </div>
                 </div>
@@ -41,16 +42,22 @@
         <div class="view">
             <div class="container view-container mt-5">
                 <h2 class="text-center pb-2 text-light pt-3 ">HOD</h2>
-                <p class="p-4 shadow-lg bg-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus totam placeat unde illo, vitae magni neque recusandae similique qui hic eius? Inventore placeat dolorem sed eaque hic unde, officia odit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore tempora commodi laborum cupiditate perspiciatis. Eligendi libero, consequatur delectus unde excepturi veritatis id aperiam neque quod laudantium quis quas, velit vel</p>
+                <p class="p-4 shadow-lg bg-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus
+                    totam placeat unde illo, vitae magni neque recusandae similique qui hic eius? Inventore placeat
+                    dolorem sed eaque hic unde, officia odit. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Tempore tempora commodi laborum cupiditate perspiciatis. Eligendi libero, consequatur delectus unde
+                    excepturi veritatis id aperiam neque quod laudantium quis quas, velit vel</p>
                 <div class="row" style="height: 150px;">
 
                 </div>
                 <div class="overflow m-4 shadow-lg">
                     {% for i in data %}
+                    {% if i.status == '1' %}
                     <div class="col-lg-4 col-md-6">
                         <div class="card card-view" style="width: 20rem;">
                             <div class="card-header bg-light text-dark">
-                              <label>{{forloop.counter}}</label> <h5> {{i.first_name}}</h5>
+                                <label>{{forloop.counter}}</label>
+                                <h5> {{i.first_name}}</h5>
                             </div>
                             <ul class="">
                                 <li class="list-group-item border-bottom mt-2">{{i.second_name}}</li>
@@ -61,12 +68,13 @@
                                 <li class="list-group-item border-bottom mt-2">{{i.department}}</li>
                                 <li class="list-group-item border-bottom mt-2">{{i.qualification}}</li>
                                 <li class="list-group-item border-bottom mt-2">{{i.experience}}</li>
-                                <li class="list-group-item  mt-4"><a href="{% url 'delhod' i.id %}" class="btn btn-danger">Delete</a></li>                           
+                                <li class="list-group-item  mt-4"><a href="{% url 'delhod' i.id %}"
+                                        class="btn btn-danger">Delete</a></li>
                             </ul>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
-                    
                 </div>
             </div>
         </div>
