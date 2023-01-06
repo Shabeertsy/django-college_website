@@ -41,6 +41,7 @@ urlpatterns = [
     path('adminstudentview',views.view_st_admin,name='adminstudentview'),
     path('deladminstudent/<int:st_id>',views.del_student_admin,name='deladminstudent'),
     path('deladminteacher/<int:teacher_id>',views.del_teacher_admin,name='deladminteacher'),
-    path('approveteacher/<int:teacher_id>',views.approve_teacher,name='approvetreacher')
+    path('approveteacher/<int:teacher_id>',views.approve_teacher,name='approveteacher'),
+    path('approvestudent/<int:student_id>',views.approve_student,name='approvestudent')
 
 ]

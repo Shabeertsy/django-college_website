@@ -23,7 +23,7 @@
         <!-- navbar -->
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark conatiner-fluid">
-                <a class="navbar-brand" href="#">College</a>
+                <a class="navbar-brand" href="{% url 'index' %}">College</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -66,36 +66,73 @@
         </div>
     </div>
 
-    <!-- bottom part with cards -->
+    <!-- bottom main with cards -->
     <div class="view-all-main-bottom">
-        <h2 class="text-center">List</h2>
+        <h2 class="text-center pt-4">Lists</h2>
         <div class="card-all p-5 conatiner-fluid">
 
-            <div class="container m-5">
+            <div class="m-5">
+
+                <!-- bottom row for list -->
                 <div class="row">
 
-                    {% for i in data %}
-                    {% if i.status=='0' %}
-                    <div class="col-lg-4 ">
-                        <div class="card shadow" style="width: 20rem;">
-                            <div class="card-header text-light" style="background: rgb(22, 55, 51);">
-                                {{i.first_name}}
-                                <a href="{% url 'appoveteacher' i.id %}" class="btn btn-success m-3">Approve</a>
-                                <a href="{% url 'deladminteacher' i.id %}" class="btn btn-danger">Reject</a>
-                            </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item">{{i.second_name}}</li>
-                                <li class="list-group-item">{{i.user_name}}</li>
-                                <li class="list-group-item">{{i.address}}</li>
-                                <li class="list-group-item">{{i.email}}</li>
-                                <li class="list-group-item">{{i.phone}}</li>
-                                <li class="list-group-item">{{i.department}}</li>
-                                <li class="list-group-item">{{i.year}}</li>
+                    <!-- pending teachers list -->
+                    <div class="col-lg-5 p-5 shadow-lg">
+                        <h4 class="text-center mb-4 text-dark border-dark border-bottom pb-2">Pending Teachers list</h4>
 
-                            </ul>
+                        <!-- iterate ,fetch data from database -->
+                        {% for i in data %}
+                        {% if i.status == '0' %}
+                        <div class="col-lg-4 ">
+                            <div class="card shadow mt-3" style="width: 20rem;">
+                                <div class="card-header text-light" style="background: rgb(22, 55, 51);">
+                                    {{i.first_name}}
+                                    <a href="{% url 'approveteacher' i.id %}" class="btn btn-success m-3">Approve</a>
+                                    <a href="{% url 'deladminteacher' i.id %}" class="btn btn-danger">Reject</a>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{i.second_name}}</li>
+                                    <li class="list-group-item">{{i.user_name}}</li>
+                                    <li class="list-group-item">{{i.address}}</li>
+                                    <li class="list-group-item">{{i.email}}</li>
+                                    <li class="list-group-item">{{i.phone}}</li>
+                                    <li class="list-group-item">{{i.department}}</li>
+                                    <li class="list-group-item">{{i.year}}</li>
+
+                                </ul>
+                            </div>
                         </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
-                    {% endfor %}
+
+                    <!-- approved teachers list -->
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-5 mt-2 p-5 shadow-lg">
+                        <h4 class="text-center mb-4 text-success border-bottom border-dark pb-2">Approved Teachers list</h4>
+                        {% for i in data %}
+                        {% if i.status == '1' %}
+                        <div class="col-lg-6 ">
+                            <div class="card mt-3 shadow" style="width:20rem;">
+                                <div class="card-header text-light" style="background: rgb(22, 55, 51);">
+                                    {{i.first_name}}
+                                    <a href="{% url 'deladminteacher' i.id %}" class="btn btn-danger m-2">Remove</a>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{i.second_name}}</li>
+                                    <li class="list-group-item">{{i.user_name}}</li>
+                                    <li class="list-group-item">{{i.address}}</li>
+                                    <li class="list-group-item">{{i.email}}</li>
+                                    <li class="list-group-item">{{i.phone}}</li>
+                                    <li class="list-group-item">{{i.department}}</li>
+                                    <li class="list-group-item">{{i.year}}</li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </div>

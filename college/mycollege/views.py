@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
-
+from django.contrib.auth import authenticate
+from django.contrib.auth import login as auth_login
 
 from .models import Hod
 from .models import Teacher
@@ -46,8 +47,9 @@ def add_student(request):
     return render(request, 'adstudent.html')
 
 
-# add data to model hod
 
+
+# add data to model hod
 
 # hod data
 
@@ -67,7 +69,7 @@ def add_hod_data(request):
         qualification = request.POST['qualification']
         experience = request.POST['experience']
 
-        status = '0'
+        status = '1'
         role = 'hod'
 
         if password == password1:
@@ -150,7 +152,6 @@ def add_teacher_data(request):
 
 # student data
 
-
 def add_student_data(request):
 
     if request.method == 'POST':
@@ -181,7 +182,7 @@ def add_student_data(request):
                     username=user_name, password=password)
                 user.save()
 
-                data = Student(user=user, first_name=first_name, second_name=second_name,
+                data = Student(user=user,status=status, first_name=first_name, second_name=second_name,
                                user_name=user_name, address=address,
                                email=email, phone=phone,
                                department=department, year=year, password=password, password1=password1)
@@ -195,6 +196,10 @@ def add_student_data(request):
         return redirect('teacher')
     else:
         return redirect(request, 'adstudent.html')
+
+
+
+
 
 
 # view hod data
@@ -274,5 +279,90 @@ def  approve_teacher(request,teacher_id):
     teacher.status='1'
     teacher.save()
     return redirect('viewall')
+
+
+#approve students
+
+
+def approve_student(request,student_id):
+    student=Student.objects.get(id=student_id)
+    student.status='1'
+    student.save()
+    return redirect("adminstudentview")
+
+
+
+
+
+#login
+
+stat=''
+rol=''
+
+def login(request):
+    global status
+    global role
+
+    if request.method=='POST':
+        username=request.POST.get('username')
+        password=request.POST.get('password')
+        
+        user=authenticate(username=username,password=password)
+
+        data=User.objects.filter(username=username).values()
+        
+        for i in data:
+            user_name=i['username']
+
+            i=i['id']
+
+
+            ds=Student.objects.filter(user_id=id).values()
+
+            for i in ds:
+                stat=i['status']
+                rol=i['role']
+
+
+            dt=Teacher.objects.filter(user_id=id).values()
+            
+            for i in dt:
+                stat=i['status']
+                rol=i['role']
+
+
+            dh=Hod.objects.filter(user_id=id).values()
+
+            for i in dh:
+                stat=i['status']
+                rol=i['role']
+
+
+            if user is not None and rol=='student' and username==user_name and stat=='1':
+                auth_login(request,user)
+                return redirect('student')
+
+            elif user is not None and rol=='teacher'  and username==user_name and stat=='1':
+                auth_login(request,user)
+                return redirect('teacher')
+
+            elif user is not None and rol=='hod' and username==user_name and stat=='1':
+                auth_login(request,user)
+                return redirect('hod')
+            
+            elif username=='admin' and password =='admin123':
+                auth_login(request,user)
+                return redirect('adminp')
+
+            else:
+                pass
+        else:
+            messages.info(request,'invalid credential')
+            return redirect('login')
+
+    else:
+        return render(request,'login.html')    
+
+        
 
 

@@ -7,23 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>students</title>
+
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
     <link rel="stylesheet" href="{% static '/style.css' %}">
-
 </head>
 
 <body>
 
-    <div class="view-admin-student-main">
+    <!-- main container -->
+    <div class="view-admin-student-main font-family">
 
         <!-- navbar -->
         <div>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark conatiner-fluid">
-                <a class="navbar-brand" href="#">College</a>
+                <a class="navbar-brand" href="{% url 'index' %}">College</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -44,20 +44,23 @@
             <div class="row mt-5">
                 <div class="col-lg-2">
 
-                    <div class="row" style="height: 0px;"></div>
-                    <h4 class="m-5 ">Students</h4>
+                    <div class="row" style="height: 100px;"></div>
+                    <h4 class="m-5 border-bottom">Students</h4>
                     <p class="m-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloremque, veniam! Cumque
                         blanditiis
                         eveniet officiis molestias distinctio adipisci nisi quam earum perferendis dolorem. Possimus
                         harum itaque nisi, deleniti nostrum laboriosam earum!</p>
 
                 </div>
+
+                <!-- empty column for space -->
                 <div class="col-lg-1"></div>
 
                 <div class="col-lg-8 shadow-lg">
-                    <h2 class="text-center  mt-5 mb-4">View Students List</h2>
+                    <h4 class="text-center text-warning  mt-5 mb-4">Pending Student List</h4>
 
                     <div class="row">
+
                         <table class="table bord">
                             <thead class="thead-dark text-dark">
                                 <tr>
@@ -74,7 +77,10 @@
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
+
+                            <!-- iterate data from the database in to a table -->
                             {% for i in data %}
+                            {% if i.status == '0' %}
                             <tbody>
                                 <tr>
                                     <th scope="row" class="text-dark">{{forloop.counter}}</th>
@@ -86,28 +92,79 @@
                                     <td class="text-dark">{{i.phone}}</td>
                                     <td class="text-dark">{{i.department}}</td>
                                     <td class="text-dark">{{i.year}}</td>
-                                    <td class="text-dark"><a href=""
+                                    <td class="text-dark"><a href="{% url 'approvestudent' i.id %}"
                                             class="btn btn-success">Approve</a></td>
 
                                     <td class="text-dark"><a href="{% url 'deladminstudent' i.id %}"
                                             class="btn btn-danger">Reject</a></td>
                                 </tr>
                             </tbody>
+                            {% endif %}
                             {% endfor %}
                         </table>
 
                     </div>
+                </div>
+            </div>
 
+            <!-- area for approved students -->
+            <div class="row mt-5 ">
+
+                <!-- empty column -->
+                <div class="col-lg-3"></div>
+
+                <div class="col-lg-8 approved-students shadow-lg">
+                    <div class="row">
+
+                        <h4 class="text-center m-4 text-success ">Approved Student List</h4>
+                        <table class="table bord ">
+                            <thead class="thead-dark text-dark">
+                                <tr>
+                                    <th scope="col">No.</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">User Name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Department</th>
+                                    <th scope="col">Year</th>
+                                    <th scope="col">Activity</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+
+                            <!-- iterate data from the database in to a table -->
+                            {% for i in data %}
+                            {% if i.status == '1' %}
+                            <tbody>
+                                <tr>
+                                    <th scope="row" class="text-dark">{{forloop.counter}}</th>
+                                    <td class="text-dark">{{i.first_name}}</td>
+                                    <td class="text-dark">{{i.second_name}}</td>
+                                    <td class="text-dark">{{i.user_name}}</td>
+                                    <td class="text-dark">{{i.address}}</td>
+                                    <td class="text-dark">{{i.email}}</td>
+                                    <td class="text-dark">{{i.phone}}</td>
+                                    <td class="text-dark">{{i.department}}</td>
+                                    <td class="text-dark">{{i.year}}</td>
+
+                                    <td class="text-dark"><a href="{% url 'deladminstudent' i.id %}"
+                                            class="btn btn-danger">Remove</a></td>
+                                </tr>
+                            </tbody>
+                            {% endif %}
+                            {% endfor %}
+                        </table>
+
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="card-all m-5">
 
-        </div>
     </div>
     </div>
-
     </div>
 
 </body>

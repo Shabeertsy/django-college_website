@@ -33,6 +33,21 @@
     font-family: 'poppins', sans-serif;
 }
 
+.admin-cards{
+    background-image: linear-gradient(160deg, rgb(22, 22, 55) 0%, rgb(22, 22, 70)50%,rgb(25, 13, 96) 50%,rgb(34, 17, 111) 100%);
+    color: #fff;
+    height: 150px;
+}
+.admin-cards a{
+    width: 120px;
+    border-radius: 15px;
+    border: none;
+}
+
+.admin-cards a:hover{
+    background-color: green;
+}
+
 
 /* styling for student */
 .st-main {
@@ -152,5 +167,11 @@
 
 .view-all-main-bottom {
     min-height: 300px;
-    background:linear-gradient(10deg, rgb(233, 219, 219) 0%,rgb(228, 212, 212) 50%);
+    background: linear-gradient(14deg, rgb(232, 220, 220) 0%, rgb(243, 235, 235) 50%, rgb(232, 220, 220)50%, rgb(243, 235, 235) 100%);
+
+    }
+
+.approved-students{
+    min-height: 500px;
+    margin-bottom: 40px;
 }

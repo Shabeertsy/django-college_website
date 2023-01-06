@@ -21,10 +21,13 @@
 <body>
     <div class="main reg-container-main font-family conatiner-fluid">
         <div class="shadow" style="min-height: 1300px;background-color: rgb(106, 85, 85);">
+
             <!-- registration form -->
             <div class="container shadow-lg  pt-5" style=" min-height: 100vh;">
                 <div class="row pt-3 text-light" style="height: 800px;">
                     <h2 class="text-center text-light border-bottom mb-3">Add Hod</h2>
+
+
                     <div class="col-md-6">
                         <form method="post" action="{% url 'hoddata' %}">
                             {% csrf_token %}
@@ -99,6 +102,7 @@
                         </form>
                         <a href="{% url 'adminp' %}" class="btn mt-3 btn-dark">Back</a>
                     </div>
+                    
                     
                     <!-- left side image -->
                     <div class="col-md-6 mt-3">
