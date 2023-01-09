@@ -176,10 +176,41 @@
     margin-bottom: 40px;
 }
 
+
+
 /* profile styling */
 
 .profile-main-row{
     height: 500px;
-    border-radius: 25px;
+    border-radius: 25px;  
+}
+
+.profile-body{
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+    height: 100vh;
     
+}
+.edit-profile{
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+    min-height: 100vh;
+    
+}
+.ul-font{
+    font-size: large;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

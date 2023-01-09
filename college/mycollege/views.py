@@ -3,6 +3,9 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate
 from django.contrib.auth import login as auth_login
+from django.contrib.auth import logout
+
+
 
 from .models import Hod
 from .models import Teacher
@@ -292,10 +295,9 @@ def approve_student(request,student_id):
     return redirect("adminstudentview")
 
 
-#profile
 
-def profile(request):
-    return render(request,'profile.html')
+
+    
 
 
 
@@ -307,6 +309,8 @@ rol=''
 def login(request):
     global stat
     global rol
+    global u_id
+
 
     if request.method=='POST':
         username=request.POST.get('username')
@@ -321,8 +325,9 @@ def login(request):
             print('username',user_name)
 
             id=i['id']
-            print('id',id)
+            u_id=id
 
+            print('id',id)
 
             student_data=Student.objects.filter(user_id=id).values()
 
@@ -385,6 +390,103 @@ def login(request):
     else:
         return render(request,'login.html')
 
+
+
+#log out
+
+def logout_profile(request):
+    logout(request)
+    return redirect ('index')
+        
+
+#profile
+
+def profile(request):
+
+    if rol=='hod':
+        if request.user:
+            user=request.user
+            hod_data=Hod.objects.get(user=user)
+            return render (request,'profile.html',{'data':hod_data})
+    elif rol=='teacher':
+        if request.user:
+            user=request.user
+            teacher_data=Teacher.objects.get(user=user)
+            return render(request,'profile.html',{'data':teacher_data})
+    elif rol=='student':
+        if request.user:
+            user=request.user
+            st_data=Student.objects.get(user=user)
+            return render(request,'profile.html',{'data':st_data})
+    else:
+        return render(request,'profile.html')
+
+
+#edit profile
+
+
+def profile_edit_page(request,id):
+
+    if rol=='hod':
+        hod_data=Hod.objects.get(id=id)
+        return render (request,'editprofile.html',{'data':hod_data})
+    elif rol=='teacher':
+        teacher_data=Teacher.objects.get(id=id)
+        return render (request,'editprofile.html',{'data':teacher_data})
+    elif rol=='student':
+        student_data=Student.objects.get(id=id)
+        return render (request,'editprofile.html',{'data':student_data})
+
+
+
+def edit_profile(request,id):
+    if request.method=="POST":
+        if rol=='hod':
+            hod_data=Hod.objects.get(id=id)
+            hod_data.first_name = request.POST['fname']
+            hod_data.second_name = request.POST['lname']
+            hod_data.user_name = request.POST['uname']
+            hod_data.address = request.POST['address']
+            hod_data.email = request.POST['email']
+            hod_data.phone = request.POST['phone']
+            hod_data.department = request.POST['department']
+            hod_data.qualification = request.POST['qualification']
+            hod_data.experience = request.POST['experience']
+            hod_data.save()
+
+            return redirect ('profile')
+
+        elif rol=='teacher':
+            teacher_data=Teacher.objects.get(id=id)
+            teacher_data.first_name = request.POST['fname']
+            teacher_data.second_name = request.POST['lname']
+            teacher_data.user_name = request.POST['uname']
+            teacher_data.address = request.POST['address']
+            teacher_data.email = request.POST['email']
+            teacher_data.phone = request.POST['phone']
+            teacher_data.department = request.POST['department']
+            teacher.department = request.POST['department']
+            teacher.subject = request.POST['subject']
+            teacher_data.save()
+
+            return redirect ('profile')
+        elif rol=='student':
+            st_data=Student.objects.get(id=id)
+            st_data.first_name = request.POST['fname']
+            st_data.second_name = request.POST['lname']
+            st_data.user_name = request.POST['uname']
+            st_data.address = request.POST['address']
+            st_data.email = request.POST['email']
+            st_data.phone = request.POST['phone']
+            st_data.department = request.POST['department']
+            # st_data.year = request.POST['year']
+            st_data.save()
+
+            return redirect ('profile')
+        else:
+            return redirect ('profile')
+
+        
         
 
 

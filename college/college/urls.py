@@ -45,5 +45,8 @@ urlpatterns = [
     path('approvestudent/<int:student_id>',views.approve_student,name='approvestudent'),
     path('login',views.login,name='login'),
     path('profile',views.profile,name='profile'),
+    path('editprofilepage/<int:id>',views.profile_edit_page,name='editprofilepage'),
+    path('<int:id>/editprofile',views.edit_profile,name='editprofile'),
+    path('logout',views.logout_profile,name='logout')
 
 ]
