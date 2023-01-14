@@ -30,7 +30,7 @@
                     <div class="navbar-nav">
                         <a class="nav-item nav-link active" href="{% url 'index' %}">Home <span
                                 class="sr-only">(current)</span></a>
-                        <a class="nav-item nav-link" href="">Back</a>
+                        <
                     </div>
                 </div>
             </nav>
@@ -58,8 +58,17 @@
                             <li class="list-group-item border-bottom mt-2">{{data.email}}</li>
                             <li class="list-group-item border-bottom mt-2">{{data.phone}}</li>
                             <li class="list-group-item border-bottom mt-2">{{data.department}}</li>
+                            
+                            {% if data.role == 'hod' %}
                             <li class="list-group-item border-bottom mt-2">{{data.qualification}}</li>
                             <li class="list-group-item border-bottom mt-2">{{data.experience}}</li>
+                            {% endif %}
+                            {% if data.role == 'teacher' %}
+                            <li class="list-group-item border-bottom mt-2">{{data.subject}}</li>
+                            {% endif %}
+                            {% if data.role == 'student' %}
+                            <li class="list-group-item border-bottom mt-2">{{data.year}}</li>
+                            {% endif %}
                             <a href="{% url 'editprofilepage' data.id %}" class="btn btn-warning mt-4">Edit</a>
                         </ul>
                         

@@ -90,6 +90,11 @@
     min-height: 540px;
 
 }
+.hod-card{
+    background-color: rgb(17, 17, 67);
+    color: #fff;
+    border: 1px solid;
+}
 
 /* styling for teacher */
 .teacher-main {
@@ -181,7 +186,7 @@
 /* profile styling */
 
 .profile-main-row{
-    height: 500px;
+    height: 600px;
     border-radius: 25px;  
 }
 
@@ -213,4 +218,20 @@
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+/* leave */
+
+.leave-main{
+    min-height: 100vh;
+    background-color: #1d2021;
+}
+.box{
+    min-height: 600px;
+    border: 1px solid;
+    border-color: #fff;
+}
+
+.h{
+height: 700px;
 }

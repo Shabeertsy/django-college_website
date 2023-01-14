@@ -70,6 +70,21 @@ class Student(models.Model):
     def __str__(self):
         return self.first_name
 
+#model  for leave approval
 
+class Approval(models.Model):
+
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=100)
+    date=models.CharField(max_length=100)
+    department=models.CharField(max_length=200)
+    reason=models.CharField(max_length=500)
+    status=models.CharField(max_length=50)
+    role=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+    
+     
 
     

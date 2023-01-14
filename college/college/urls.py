@@ -47,6 +47,22 @@ urlpatterns = [
     path('profile',views.profile,name='profile'),
     path('editprofilepage/<int:id>',views.profile_edit_page,name='editprofilepage'),
     path('<int:id>/editprofile',views.edit_profile,name='editprofile'),
-    path('logout',views.logout_profile,name='logout')
+    path('logout',views.logout_profile,name='logout'),
+    path('leave',views.leave_page,name='leave'),
+    path('applyleave',views.teacher_apply_leave,name='applyleave'),
+    path('approvetleave/<int:user_id>',views.approve_teacher_leave,name='approvetleave'),
+    path('teacherleave',views.teacher_leave_page,name='teacherleave'),
+    path('hodleaveapproval',views.hod_leave_approval,name='hodleaveapproval'),
+    path('hodapplyleave',views.hod_apply_leave,name='hodapplyleave'),
+    path('hodleavepage',views.hod_leave_page,name='hodleavepage'),
+    path('hodeleavehandler/<int:user_id>',views.hod_leave_approval_handler,name='hodleavehandler'),
+    path('studentleavepage',views.student_leave_page,name='studentleavepage'),
+    path('studentleavehandler',views.student_leave_handler,name='studentleavehandler'),
+    path('studentleavapprove',views.student_leave_approve,name='studentleaveapprove'),
+    path('studentleaveapprovehandler/<int:user_id>',views.student_leave_approve_handler,name='studentleaveapprovehandler'),
+    path('delleave/<int:user_id>',views.del_leave,name='delleave'),
+    path('hoddelleave/<int:user_id>',views.hod_del_leave,name='hoddelleave'),
+    path('teacherdelleave/<int:user_id>',views.teacher_del_leave,name='teacherdelleave')
+
 
 ]

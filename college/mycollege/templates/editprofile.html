@@ -98,6 +98,14 @@
                                 aria-describedby="emailHelp"name='experience' placeholder="Year of Experience">
                         </div>
                         {% endif %}
+
+                        {% if data.role == 'student' %}
+                        <div class="form-group mt-4">
+                            <label for="exampleInputEmail1">Year</label>
+                            <input type="text" value="{{data.year}}" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" name="subject" placeholder="year">
+                        </div>
+                        {% endif %}
                         <button type="submit" class="btn btn-success mt-4">Update</button>
                     </form>
                    
