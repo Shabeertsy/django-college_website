@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 from django.db.models import Q
 
 
-from .models import Student,Approval,Teacher,Hod
+from .models import Student,Approval,Teacher,Hod,Exams,Marks
 
 # Create your views here.
 
@@ -29,7 +29,17 @@ def adminp(request):
 
 
 def student(request):
-    return render(request, 'student.html')
+    if request.user:
+        user=request.user
+        user_data=Student.objects.filter(user=user).values()
+
+    
+        print('examdata',user_data)
+    for i in user_data:
+        department=i['department']
+
+    data=Exams.objects.filter(department=department)
+    return render(request, 'student.html',{'data':data})
 
 
 def hod(request):
@@ -402,6 +412,8 @@ def login(request):
         return render(request, 'login.html')
 
 
+
+
 # log out
 
 def logout_profile(request):
@@ -432,6 +444,8 @@ def profile(request):
         return render(request, 'profile.html')
 
 
+
+
 # edit profile
 
 
@@ -446,6 +460,8 @@ def profile_edit_page(request, id):
     elif rol == 'student':
         student_data = Student.objects.get(id=id)
         return render(request, 'editprofile.html', {'data': student_data})
+
+
 
 
 #edit profile
@@ -515,6 +531,7 @@ def leave_page(request):
 
 
 
+
 #teacher apply leave
 
 def teacher_apply_leave(request):
@@ -540,6 +557,8 @@ def teacher_apply_leave(request):
         return redirect('teacherleave')
     else:
         return redirect('teacherleave')
+
+
 
 
 #hod leave apply
@@ -590,6 +609,9 @@ def teacher_leave_page(request):
         return render(request,'teacherleave.html',{'data':teacher_data})
    
 
+
+
+
 #hod leave approval page in admin navbar
 
 def hod_leave_approval(request):
@@ -617,6 +639,8 @@ def hod_leave_page(request):
 
 
 
+
+
 #student leave approval
 
 def student_leave_page(request):
@@ -624,6 +648,9 @@ def student_leave_page(request):
         user=request.user
         st_data=Approval.objects.filter(user=user)
         return render(request,'studentleavepage.html',{'data':st_data})
+
+
+
 
 
 #student leave apply button
@@ -652,6 +679,9 @@ def student_leave_handler(request):
         return redirect('studentleavepage')
 
 
+
+
+
 #approve student leave
 
 def student_leave_approve(request):
@@ -673,6 +703,10 @@ def student_leave_approve_handler(request,user_id):
     data.status='1'
     data.save()
     return redirect('studentleaveapprove')
+
+
+
+
 
 #delete leave
 
@@ -696,4 +730,118 @@ def teacher_del_leave(request,user_id):
 
 
 
+
+#add exams 
+
+def add_examspage(request):
+    if request.user:
+        user=request.user
+        user_data=Teacher.objects.filter(user=user).values()
+
+    for i in user_data:
+        dpt=i['department']
+        subject=i['subject']
+
+    data=Exams.objects.filter(Q(department=dpt) & Q(subject=subject))
+    return render(request,'adexam.html',{'data':data})
+
+
+
+#add exam data to model
     
+def add_exam(request):
+    dpt=''
+    subject=''
+    if request.user:
+        user=request.user
+    
+    all_data=Teacher.objects.filter(user=user).values()
+
+    for i in all_data:
+        dpt=i['department']
+        subject=i['subject']
+
+
+    if request.method=='POST':
+        date=request.POST['date']
+        exam=request.POST['examdata']
+        status='0'
+
+        data=Exams(user=user,status=status,date=date,exam=exam,department=dpt,subject=subject)
+        data.save()
+
+        return redirect('addexampage')
+    else:
+        return redirect('addexampage')
+
+
+#exam approve hod
+
+def exam_approve(request):
+    if request.user:
+        dpt=''
+        user=request.user
+
+        user_data=Hod.objects.filter(user=user).values()
+
+    for i in user_data:
+        dpt=i['department']
+    
+    data=Exams.objects.filter(department=dpt)
+    return render(request,'exmapprove.html',{'data':data})
+
+
+
+#exam approve button
+
+def exam_approve_handler(request,user_id):
+    data=Exams.objects.get(id=user_id)
+    data.status='1'
+    data.save()
+    return redirect('examapprove')
+
+
+
+#marks adding
+
+def add_marks(request):
+    return render(request,'addmarks.html')
+
+
+def add_marks_handler(request):
+    if request.user:
+        user=request.user
+
+    if request.method=='POST':
+        user_name=request.POST['name']
+        department=request.POST['department']
+        subject=request.POST['subject']
+        marks=request.POST['marks']
+        
+
+        data=Marks(user=user,marks=marks,department=department,name=user_name,subject=subject)
+        data.save()
+
+
+        return redirect('addmarks')
+    else:
+        return redirect('addmarks')
+
+
+#view marks
+
+def view_marks(request):
+    if request.user:
+        user=request.user
+        dpt=''
+        u_data=Student.objects.filter(user=user).values()
+
+        for i in u_data:
+            dpt=i['department']
+
+
+
+        data=Marks.objects.filter(Q(name=user) & Q(department=dpt))
+        print('marks',data)
+        return render(request,'viewmarks.html',{'data':data})
+

@@ -85,6 +85,32 @@ class Approval(models.Model):
     def __str__(self):
         return self.name
     
-     
+
+#models for exam
+
+class Exams(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    subject=models.CharField(max_length=200)
+    date=models.CharField(max_length=100)
+    exam=models.CharField(max_length=400)
+    department=models.CharField(max_length=200)
+    status=models.CharField(max_length=50)
+    
+
+    def __str__(self):
+        return self.subject
+
+#model for publishing marks
+
+class Marks(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
+    name=models.CharField(max_length=200)
+    marks=models.CharField(max_length=400)
+    department=models.CharField(max_length=200)
+    subject=models.CharField(max_length=200)
+
+    def __str__(self):
+        return self.name
+    
 
     

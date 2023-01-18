@@ -62,7 +62,16 @@ urlpatterns = [
     path('studentleaveapprovehandler/<int:user_id>',views.student_leave_approve_handler,name='studentleaveapprovehandler'),
     path('delleave/<int:user_id>',views.del_leave,name='delleave'),
     path('hoddelleave/<int:user_id>',views.hod_del_leave,name='hoddelleave'),
-    path('teacherdelleave/<int:user_id>',views.teacher_del_leave,name='teacherdelleave')
+    path('teacherdelleave/<int:user_id>',views.teacher_del_leave,name='teacherdelleave'),
+    path('addexampage',views.add_examspage,name='addexampage'),
+    path('addexam',views.add_exam,name='addexam'),
+    path('examapprove',views.exam_approve,name='examapprove'),
+    path('examapprovehandler/<int:user_id>',views.exam_approve_handler,name='examapprovehandler'),
+    path('addmarks',views.add_marks,name='addmarks'),
+    path('addmarkshandler',views.add_marks_handler,name='addmarkshandler'),
+    path('viewmarks',views.view_marks,name='viewmarks')
+    
+
 
 
 ]
