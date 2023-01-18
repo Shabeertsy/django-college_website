@@ -1,7 +1,8 @@
 # django-college_website
 **this website is made using python django**
 
-![image](https://user-images.githubusercontent.com/106737274/213095706-058b1c2a-c09a-4d7e-a506-f5ce357245b7.png)
+![Screenshot from 2023-01-18 11-18-09](https://user-images.githubusercontent.com/106737274/213096663-b565544f-fc4b-4e0f-a57b-dcea6e129e73.png)
+
 
 to run this project  you  must install python django 
 clone this repo
